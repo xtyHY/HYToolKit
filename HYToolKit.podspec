@@ -26,6 +26,8 @@ Pod::Spec.new do |s|
   s.author           = { 'xtyHY' => 'devhy@foxmail.com' }
   s.source           = { :git => 'https://github.com/xtyHY/HYToolKit.git', :tag => s.version.to_s }
 
+  s.swift_version = "4.2"
+  s.swift_versions = ['4.2', '5.0']
   s.ios.deployment_target = '10.0'
 
   s.source_files = 'HYToolKit/Classes/**/*.{swift}'
@@ -33,6 +35,6 @@ Pod::Spec.new do |s|
 
   # s.frameworks = 'UIKit'
 
-  s.dependency 'Kingfisher', '~> 5.2.0'
-  s.dependency 'MBProgressHUD', '~> 1.1.0'
+  s.dependency 'Kingfisher', '>= 5.2.0'
+  s.dependency 'MBProgressHUD', '>= 1.1.0'
 end

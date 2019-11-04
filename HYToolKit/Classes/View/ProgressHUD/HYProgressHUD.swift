@@ -45,7 +45,7 @@ class HYProgressHUD: Equatable {
     
     DispatchQueue.main.async {
       window.addSubview(self.hud)
-      window.bringSubview(toFront: self.hud)
+      window.bringSubviewToFront(self.hud)
     }
   }
   
