@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'HYToolKit_Example' do
+  pod 'HYToolKit', :path => '../'
+
+  target 'HYToolKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

@@ -1,0 +1,6 @@
+framework module HYToolKit {
+  umbrella header "HYToolKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

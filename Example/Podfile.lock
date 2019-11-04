@@ -1,0 +1,16 @@
+PODS:
+  - HYToolKit (0.1.0)
+
+DEPENDENCIES:
+  - HYToolKit (from `../`)
+
+EXTERNAL SOURCES:
+  HYToolKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  HYToolKit: 22a5ae363aa1d2d21ca7f91adacb53f51f91f8fc
+
+PODFILE CHECKSUM: c1557b7f4134f2b5f775e69cbff218005fdc3e2a
+
+COCOAPODS: 1.8.4

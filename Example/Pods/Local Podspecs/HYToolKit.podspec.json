@@ -1,0 +1,22 @@
+{
+  "name": "HYToolKit",
+  "version": "0.1.0",
+  "summary": "A short description of HYToolKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/xtyHY/HYToolKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "xtyHY": "devhy@foxmail.com"
+  },
+  "source": {
+    "git": "https://github.com/xtyHY/HYToolKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "HYToolKit/Classes/**/*"
+}
