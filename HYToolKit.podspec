@@ -28,8 +28,8 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'HYBase/Classes/**/*'
-  # s.resource = 'HYBase/Classes/**/*.{png}'
+  s.source_files = 'HYToolKit/Classes/**/*.{swift}'
+  s.resource = 'HYToolKit/Classes/**/*.{png}'
 
   # s.frameworks = 'UIKit'
 
