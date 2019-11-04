@@ -28,11 +28,11 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'HYBase/Classes/**/*.{swift}'
-  s.resource = 'HYBase/Classes/**/*.{png}'
+  s.source_files = 'HYBase/Classes/**/*'
+  # s.resource = 'HYBase/Classes/**/*.{png}'
 
-  s.frameworks = 'UIKit'
+  # s.frameworks = 'UIKit'
 
-  s.dependency 'Kingfisher', '~> 5.7.1'
+  s.dependency 'Kingfisher', '~> 5.2.0'
   s.dependency 'MBProgressHUD', '~> 1.1.0'
 end

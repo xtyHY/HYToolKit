@@ -1,8 +1,8 @@
 {
   "name": "HYToolKit",
   "version": "0.1.0",
-  "summary": "A short description of HYToolKit.",
-  "description": "TODO: Add long description of the pod here.",
+  "summary": "自用工具库合集",
+  "description": "自用工具库合集，暂不稳定",
   "homepage": "https://github.com/xtyHY/HYToolKit",
   "license": {
     "type": "MIT",
@@ -16,7 +16,15 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "10.0"
   },
-  "source_files": "HYToolKit/Classes/**/*"
+  "source_files": "HYBase/Classes/**/*",
+  "dependencies": {
+    "Kingfisher": [
+      "~> 5.2.0"
+    ],
+    "MBProgressHUD": [
+      "~> 1.1.0"
+    ]
+  }
 }
