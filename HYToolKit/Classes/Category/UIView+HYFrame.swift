@@ -8,10 +8,9 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
   // MARK: - Frame Origin
-  
-  public var x: CGFloat {
+  var x: CGFloat {
     get { return self.frame.origin.x }
     set {
       var rect = self.frame
@@ -20,7 +19,7 @@ extension UIView {
     }
   }
   
-  public var y: CGFloat {
+  var y: CGFloat {
     get { return self.frame.origin.y }
     set {
       var rect = self.frame
@@ -30,8 +29,7 @@ extension UIView {
   }
 
   // MARK: - Frame Size
-  
-  public var width: CGFloat {
+  var width: CGFloat {
     get { return self.frame.size.width }
     set {
       var rect = self.frame
@@ -40,7 +38,7 @@ extension UIView {
     }
   }
   
-  public var height: CGFloat {
+  var height: CGFloat {
     get { return self.frame.size.height }
     set {
       var rect = self.frame
@@ -50,35 +48,33 @@ extension UIView {
   }
   
   // MARK: - Border
-  
-  public var left: CGFloat {
+  var left: CGFloat {
     get { return self.x }
     set { self.x = newValue }
   }
   
-  public var top: CGFloat {
+  var top: CGFloat {
     get { return self.y }
     set { self.y = newValue }
   }
   
-  public var bottom: CGFloat {
+  var bottom: CGFloat {
     get { return self.y + self.height }
     set { self.y = newValue - self.height }
   }
   
-  public var right: CGFloat {
+  var right: CGFloat {
     get { return self.x + self.width }
     set { self.x = newValue - self.width }
   }
   
   // MARK: - Center
-  
-  public var centerX: CGFloat {
+  var centerX: CGFloat {
     get { return self.center.x }
     set { self.center = CGPoint(x: newValue, y: self.centerY) }
   }
   
-  public var centerY: CGFloat {
+  var centerY: CGFloat {
     get { return self.center.y }
     set { self.center = CGPoint(x: self.centerX, y: newValue) }
   }

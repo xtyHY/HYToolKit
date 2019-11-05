@@ -8,20 +8,20 @@
 
 import UIKit
 
-extension Bundle {
-  static public var appBundleId: String {
+public extension Bundle {
+  static var appBundleId: String {
     return main.object(forInfoDictionaryKey: "CFBundleIdentifier") as! String
   }
   
-  static public var appVersion: String {
+  static var appVersion: String {
     return main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
   }
   
-  static public var appBuildVer: String {
+  static var appBuildVer: String {
     return main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
   }
   
-  static public var appName: String {
+  static var appName: String {
     return main.object(forInfoDictionaryKey: "CFBundleName") as! String
   }
 }

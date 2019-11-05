@@ -12,10 +12,10 @@ import MBProgressHUD
 /// 用来寸所有的hud对象，最后hideAll的时候使用，MBProgressHUD是这么推荐的
 private var allHuds: [HYProgressHUD] = []
 
-class HYProgressHUD: Equatable {
+public class HYProgressHUD: Equatable {
   
   /// 样式枚举
-  enum Style {
+  public enum Style {
     case normal // HUD (+ text)
     case text // Only text
     case completion // check icon (+ text)
@@ -34,7 +34,7 @@ class HYProgressHUD: Equatable {
   /// 初始化hud
   /// - Parameter style: 样式
   /// - Parameter text: 文字
-  init?(_ style: Style, text: String? = nil) {
+  public init?(_ style: Style, text: String? = nil) {
     guard let window = HYProgressHUD.window else {
       return nil
     }
@@ -50,7 +50,7 @@ class HYProgressHUD: Equatable {
   }
   
   /// Equatable
-  static func == (lhs: HYProgressHUD, rhs: HYProgressHUD) -> Bool {
+  public static func == (lhs: HYProgressHUD, rhs: HYProgressHUD) -> Bool {
     return lhs === rhs
   }
   
@@ -83,13 +83,13 @@ private extension HYProgressHUD {
 }
 
 // MARK: Public
-extension HYProgressHUD {
+public extension HYProgressHUD {
   
   /// 变换成别的样式
   /// - Parameter style: 样式
   /// - Parameter text: 文字
   /// - Parameter hide: 自动隐藏
-  public func change(_ style: Style, text: String? = nil, hide: Bool = false) {
+  func change(_ style: Style, text: String? = nil, hide: Bool = false) {
     self.style = style
     self.text = text
     
@@ -124,7 +124,7 @@ extension HYProgressHUD {
   }
   
   /// 手动显示hud
-  public func show() {
+  func show() {
     DispatchQueue.main.async {
       self.hud.show(animated: true)
     }
@@ -132,7 +132,7 @@ extension HYProgressHUD {
   
   /// 手动隐藏hud
   /// - Parameter after: 延迟多少秒，默认0
-  public func hide(_ after: Int = 0) {
+  func hide(_ after: Int = 0) {
     let time = after > 0 ? after : 0
     
     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(time)) {
@@ -147,7 +147,7 @@ extension HYProgressHUD {
   /// 直接显示并在2秒后隐藏
   /// - Parameter style: 样式
   /// - Parameter text: 文字
-  public class func show(_ style: Style = .normal, text: String? = nil) {
+  class func show(_ style: Style = .normal, text: String? = nil) {
     let mHud = HYProgressHUD(style, text: text)
     mHud?.show()
     mHud?.hide(2)
@@ -155,24 +155,24 @@ extension HYProgressHUD {
   
   /// 显示文字型hud
   /// - Parameter text: 文字
-  public class func showText(_ text: String) {
+  class func showText(_ text: String) {
     self.show(.text, text: text)
   }
   
   /// 显示带一个✖️的hud
   /// - Parameter text: 文字
-  public class func showError(_ text: String?) {
+  class func showError(_ text: String?) {
     self.show(.error, text: text)
   }
   
   /// 显示带一个✔️的hud
   /// - Parameter text: 文字
-  public class func showCompletion(_ text: String?) {
+  class func showCompletion(_ text: String?) {
     self.show(.completion, text: text)
   }
   
   /// 隐藏所有hud
-  public class func hideAll() {
+  class func hideAll() {
     for hud in allHuds { hud.hide() }
   }
   

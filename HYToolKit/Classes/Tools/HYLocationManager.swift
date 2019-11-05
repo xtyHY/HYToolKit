@@ -9,10 +9,10 @@
 import Foundation
 import CoreLocation
 
-typealias HYLocationResult = ((_ locations: [CLLocation], _ error: Error?) -> Void)
-typealias HYPlacemarkResult = ((_ placemarks: [CLPlacemark], _ error: Error?) -> Void)
+public typealias HYLocationResult = ((_ locations: [CLLocation], _ error: Error?) -> Void)
+public typealias HYPlacemarkResult = ((_ placemarks: [CLPlacemark], _ error: Error?) -> Void)
 
-@objc class HYLocationManager: NSObject, CLLocationManagerDelegate {
+@objc public class HYLocationManager: NSObject, CLLocationManagerDelegate {
   public static let shared = HYLocationManager.init()
   
   @objc private let locationManager = CLLocationManager()
@@ -35,7 +35,7 @@ typealias HYPlacemarkResult = ((_ placemarks: [CLPlacemark], _ error: Error?) ->
   
   // MARK:  CLLocationManagerDelegate
   /// 收到定位回调
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+  public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     manager.stopUpdatingLocation()
     
     // location 回调
@@ -55,7 +55,7 @@ typealias HYPlacemarkResult = ((_ placemarks: [CLPlacemark], _ error: Error?) ->
   }
   
   /// 定位失败回调
-  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+  public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     manager.stopUpdatingLocation()
     
     self.locRes?([], error)
@@ -63,7 +63,7 @@ typealias HYPlacemarkResult = ((_ placemarks: [CLPlacemark], _ error: Error?) ->
   }
   
   /// 授权失败
-  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+  public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     if status == .notDetermined {
       print("地理位置-等待用户授权")
     } else if (status == .authorizedAlways || status == .authorizedWhenInUse) {
@@ -76,22 +76,22 @@ typealias HYPlacemarkResult = ((_ placemarks: [CLPlacemark], _ error: Error?) ->
 }
 
 // MARK: - Public
-extension HYLocationManager {
+public extension HYLocationManager {
   
   /// 启动定位，回调是CLLocation数组
   /// - Parameter location: 回调
-  public func startLocate(location: @escaping HYLocationResult) {
+  func startLocate(location: @escaping HYLocationResult) {
     self._start(location: location, placemark: nil)
   }
   
   /// 启动定位，回调是CLPlacemark数组
   /// - Parameter placemark: 回调
-  public func startLocate(placemark: @escaping HYPlacemarkResult) {
+  func startLocate(placemark: @escaping HYPlacemarkResult) {
     self._start(location: nil, placemark: placemark)
   }
   
   /// 查一下是不是没有定位权限
-  public class func locatedAuth() -> Error? {
+  class func locatedAuth() -> Error? {
     if CLLocationManager.locationServicesEnabled() == false {
       return CLError(.denied, userInfo: [NSLocalizedDescriptionKey: "获取定位信息失败，请前往设置开启定位服务"])
     }
@@ -110,15 +110,15 @@ extension HYLocationManager {
 }
 
 // MARK: - Tool
-extension HYLocationManager {
+public extension HYLocationManager {
   
   /// placemark的省
-  public class func province(by placemark: CLPlacemark) -> String {
+  class func province(by placemark: CLPlacemark) -> String {
     return placemark.administrativeArea ?? ""
   }
   
   /// placemark的市（直辖市也返回）
-  public class func city(by placemark: CLPlacemark) -> String {
+  class func city(by placemark: CLPlacemark) -> String {
     guard let city = placemark.locality else {
       // 直辖市，城市名称用省名称问题
       return placemark.administrativeArea ?? ""
@@ -127,7 +127,7 @@ extension HYLocationManager {
   }
   
   /// placemark的地址
-  public class func address(by placemark: CLPlacemark) -> String {
+  class func address(by placemark: CLPlacemark) -> String {
     if let origDict = placemark.addressDictionary,
       let addr = origDict["FormattedAddressLines"] as? String {
       return addr

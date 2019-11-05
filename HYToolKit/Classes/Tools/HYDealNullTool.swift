@@ -8,9 +8,9 @@
 
 import Foundation
 
-class HYDealNullTool {
+public class HYDealNullTool {
   /// 将任意类型中的所有NSNull类型清除，若是NSNull被改成""
-  class func deal(_ data: Any) -> Any {
+  public class func deal(_ data: Any) -> Any {
     if (data is [String: Any]) {
       return self.deal(dict: data as! [String : Any])
     } else if (data is [Any]) {
@@ -25,7 +25,7 @@ class HYDealNullTool {
   }
   
   /// 将Dictionary中的NSNull类型清除
-  class func deal(dict: [String: Any]) -> [String: Any] {
+  public class func deal(dict: [String: Any]) -> [String: Any] {
     var result = dict
     for (key, value) in result {
       result[key] = self.deal(value)
@@ -33,8 +33,8 @@ class HYDealNullTool {
     return result
   }
   
-/// 将Array中的NSNull类型清除
-  class func deal(array: [Any]) -> [Any] {
+  /// 将Array中的NSNull类型清除
+  public class func deal(array: [Any]) -> [Any] {
     var result = array
     for i in 0..<array.count {
       result[i] = self.deal(result[i])

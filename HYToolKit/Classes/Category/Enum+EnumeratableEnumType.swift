@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol EnumeratableEnumType {
+public protocol EnumeratableEnumType {
   static var allValues: [Self] { get }
 }

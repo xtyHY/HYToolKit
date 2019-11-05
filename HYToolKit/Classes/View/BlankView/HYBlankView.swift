@@ -8,9 +8,9 @@
 
 import UIKit
 
-typealias HYBlankViewClickClosure = (() -> Void)
+public typealias HYBlankViewClickClosure = (() -> Void)
 
-class HYBlankView: UIView {
+public class HYBlankView: UIView {
   
   private lazy var contentView: UIView = {
     return UIView(frame: self.bounds)
@@ -43,7 +43,7 @@ class HYBlankView: UIView {
   
   private var callback: HYBlankViewClickClosure?
   
-  init(frame: CGRect, image: UIImage?, text: String, detail: String?, btnText: String?, callback: HYBlankViewClickClosure? = nil) {
+  public init(frame: CGRect, image: UIImage?, text: String, detail: String?, btnText: String?, callback: HYBlankViewClickClosure? = nil) {
     super.init(frame: frame)
     
     self.callback = callback
@@ -120,9 +120,4 @@ class HYBlankView: UIView {
     self.contentView.height = bottomBtn.bottom
     self.contentView.center = CGPoint(x: self.width/2, y: self.height/2)
   }
-}
-
-// MARK: - public
-extension HYBlankView {
-  
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UINavigationController {
+public extension UINavigationController {
   func remove(classes: [UIViewController.Type]) -> Void {
     let result = self.viewControllers.filter { (vc) -> Bool in
       for cls in classes {

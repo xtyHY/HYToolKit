@@ -8,14 +8,14 @@
 
 import UIKit
 
-extension UIFont {
-  public static func PingFang_Regular(size: CGFloat) -> UIFont {
+public extension UIFont {
+  static func PingFang_Regular(size: CGFloat) -> UIFont {
     return UIFont.init(name: "PingFangSC-Regular", size: size)!
   }
-  public static func PingFang_Medium(size: CGFloat) -> UIFont {
+  static func PingFang_Medium(size: CGFloat) -> UIFont {
     return UIFont.init(name: "PingFangSC-Medium", size: size)!
   }
-  public static func PingFang_Semibold(size: CGFloat) -> UIFont {
+  static func PingFang_Semibold(size: CGFloat) -> UIFont {
     return UIFont.init(name: "PingFangSC-Semibold", size: size)!
   }
 }

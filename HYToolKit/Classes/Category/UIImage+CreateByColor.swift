@@ -12,14 +12,14 @@ private func EdgeSizeFromRadius(_ radius: CGFloat) -> CGFloat {
   return (radius * 2 + 1)
 }
 
-extension UIImage {
+public extension UIImage {
   
   /// 用颜色创建一个长方形图片
   /// - Parameter color: 颜色
   /// - Parameter radius: 圆角，默认0
   /// - Parameter borderWidth: 边框宽度，默认0
   /// - Parameter borderColor: 边框颜色，可不传
-  public static func from(color: UIColor,
+  static func from(color: UIColor,
                           borderColor: UIColor? = nil,
                           borderWidth: CGFloat = 0,
                           radius: CGFloat = 0) -> UIImage {
@@ -49,7 +49,7 @@ extension UIImage {
   /// - Parameter colors: 颜色数组
   /// - Parameter locations: 位置信息数组
   /// - Parameter angle: 角度
-  public static func gradient(size: CGSize, colors: [UIColor], locations: [CGFloat], angle: CGFloat = 0) -> UIImage {
+  static func gradient(size: CGSize, colors: [UIColor], locations: [CGFloat], angle: CGFloat = 0) -> UIImage {
     
     var colorComponents: [CGFloat] = [];
     
@@ -93,7 +93,7 @@ extension UIImage {
   /// 使用 color+size 创建一个椭圆/圆形图片
   /// - Parameter color: 颜色
   /// - Parameter size: 图片大小
-  public static func circularImage(color: UIColor, size: CGSize) -> UIImage {
+  static func circularImage(color: UIColor, size: CGSize) -> UIImage {
     let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     let path = UIBezierPath.init(ovalIn: rect)
     
@@ -111,7 +111,7 @@ extension UIImage {
   
   /// 重新改变图片尺寸
   /// - Parameter size: 尺寸
-  public func reset(size: CGSize) -> UIImage? {
+  func reset(size: CGSize) -> UIImage? {
     let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     
     UIGraphicsBeginImageContextWithOptions(size, false, 0)
@@ -123,7 +123,7 @@ extension UIImage {
   
   /// 等比缩放
   /// - Parameter fixWith: 固定width
-  public func scale(fixWith: CGFloat) -> UIImage? {
+  func scale(fixWith: CGFloat) -> UIImage? {
     let fixScale = fixWith/self.size.width
     
     let size = CGSize(width: fixWith, height: self.size.height * fixScale)
@@ -138,7 +138,7 @@ extension UIImage {
   
   /// 等比缩放
   /// - Parameter fixWith: 固定height
-  public func scale(fixHeight: CGFloat) -> UIImage? {
+  func scale(fixHeight: CGFloat) -> UIImage? {
     let fixScale = fixHeight/self.size.height
     
     let size = CGSize(width: self.size.width * fixScale, height: fixHeight)

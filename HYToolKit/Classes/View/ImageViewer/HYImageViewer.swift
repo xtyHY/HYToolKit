@@ -10,9 +10,9 @@ import UIKit
 import Kingfisher
 
 /// 图片查看器
-class HYImageViewer: UIView {
+public class HYImageViewer: UIView {
   
-  enum ImageType {
+  private enum ImageType {
     case url, image
   }
   
@@ -60,7 +60,7 @@ class HYImageViewer: UIView {
   /// 使用 图片地址 数组初始化
   /// - Parameter URLs: 图片url string地址
   /// - Parameter marks: 描述文字
-  convenience init(with URLs: [String], marks: [String]? = nil) {
+  public convenience init(with URLs: [String], marks: [String]? = nil) {
     self.init(frame: CGRect.zero)
     self.imageType = .url
     self.imageUrls = URLs
@@ -71,7 +71,7 @@ class HYImageViewer: UIView {
   /// 使用 图片对象 数组初始化
   /// - Parameter images: 图片对象
   /// - Parameter marks: 描述文字
-  convenience init(with images: [UIImage?], marks: [String]? = nil) {
+  public convenience init(with images: [UIImage?], marks: [String]? = nil) {
     self.init(frame: CGRect.zero)
     self.imageType = .image
     self.imageObjs = images
@@ -80,7 +80,7 @@ class HYImageViewer: UIView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    super.init(coder: coder)
   }
   
   private func setupUI() {
@@ -99,13 +99,13 @@ class HYImageViewer: UIView {
   // MARK: Action
   /// 关闭按钮操作
   @objc private func clickCloseBtn() {
-    self.hide(with: true)
+    self.hide(animated: true)
   }
 }
 
 // MARK: CollectionViewDelegateSource
 extension HYImageViewer: UICollectionViewDelegate {
-  func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+  public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     let cell = cell as! HYImageViewerCell
     cell.scrollView.zoomScale = 1.0
   }
@@ -113,14 +113,14 @@ extension HYImageViewer: UICollectionViewDelegate {
 
 // MARK: CollectionViewDataSource
 extension HYImageViewer: UICollectionViewDataSource {
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return self.imageType == .image ? self.imageObjs.count : self.imageUrls.count
   }
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+  public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HYImageViewerCell", for: indexPath) as! HYImageViewerCell
     cell.singleTapCallback = { [weak self] in
-      self?.hide(with: true)
+      self?.hide(animated: true)
     }
     
     var mark: String? = nil
@@ -139,15 +139,19 @@ extension HYImageViewer: UICollectionViewDataSource {
 
 // MARK: ScrollViewDelegate
 extension HYImageViewer: UIScrollViewDelegate {
-  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+  public func scrollViewDidScroll(_ scrollView: UIScrollView) {
     let index: Int = Int(self.collectionView.contentOffset.x / self.collectionView.bounds.size.width)
     self.textLabel.text = "\(index+1) / \(self.imageType == .image ? self.imageObjs.count : self.imageUrls.count)"
   }
 }
 
 // MARK: Public
-extension HYImageViewer {
-  public func show(with animated: Bool, index: Int = 0) {
+public extension HYImageViewer {
+  
+  /// 展示图片查看器
+  /// - Parameter index: 默认的位置，默认0
+  /// - Parameter animated: 需要动画，默认true
+  func show(index: Int = 0, animated: Bool = true) {
     let total = self.collectionView.numberOfItems(inSection: 0)
     if total > 0{
       self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: UICollectionView.ScrollPosition.left, animated: false)
@@ -168,7 +172,9 @@ extension HYImageViewer {
     }
   }
   
-  public func hide(with animated: Bool) {
+  /// 隐藏图片查看器
+  /// - Parameter animated: 需要动画，默认true
+  func hide(animated: Bool = true) {
     if animated {
       UIView.animate(withDuration: 0.3, animations: {
         self.alpha = 0

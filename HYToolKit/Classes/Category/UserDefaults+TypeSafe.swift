@@ -10,7 +10,7 @@
 /**
   -----Example------
  
-  extension UserDefaults.Key where Value == Int {
+  extension UserDefaults.Key where ValueType == Int {
     static let myCount = UserDefaults.Key<Int>("myCount")
   }
  

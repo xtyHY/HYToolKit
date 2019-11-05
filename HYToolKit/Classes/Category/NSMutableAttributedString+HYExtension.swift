@@ -8,14 +8,14 @@
 
 import UIKit
 
-extension NSMutableAttributedString {
+public extension NSMutableAttributedString {
   
   /// 根据{}来设置高亮文本"xx{TT}vxc{HY}n" -> "xxTTvxcHYn"
-  /// - Parameter origText: 带指定符号的文本
+  /// - Parameter formatText: 带指定符号的文本
   /// - Parameter normal: 普通样式
   /// - Parameter highlight: 高亮样式
-  public static func createBy(_ origText: String, normal: Dictionary<NSAttributedString.Key, Any>, highlight: Dictionary<NSAttributedString.Key, Any>) -> NSMutableAttributedString {
-    let strArr1 = origText.components(separatedBy: "}")
+  static func createBy(_ formatText: String, normal: Dictionary<NSAttributedString.Key, Any>, highlight: Dictionary<NSAttributedString.Key, Any>) -> NSMutableAttributedString {
+    let strArr1 = formatText.components(separatedBy: "}")
     
     let result = NSMutableAttributedString.init()
     
@@ -35,7 +35,7 @@ extension NSMutableAttributedString {
   /// - Parameter highlightText: 高亮字符串
   /// - Parameter normal: 普通样式
   /// - Parameter highlight: 高亮样式
-  public static func createBy(_ origText: String, highlightText: String, normal: Dictionary<NSAttributedString.Key, Any>, highlight: Dictionary<NSAttributedString.Key, Any>) -> NSMutableAttributedString {
+  static func createBy(_ origText: String, highlightText: String, normal: Dictionary<NSAttributedString.Key, Any>, highlight: Dictionary<NSAttributedString.Key, Any>) -> NSMutableAttributedString {
     let result = NSMutableAttributedString.init(string: origText, attributes: normal)
     
     if let range = origText.range(of: highlightText) {

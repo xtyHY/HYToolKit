@@ -8,10 +8,10 @@
 
 import UIKit
 
-extension String {
+public extension String {
   
   /// range 转 nsrange
-  public func nsRange(from range: Range<String.Index>) -> NSRange {
+  func nsRange(from range: Range<String.Index>) -> NSRange {
     guard let from = range.lowerBound.samePosition(in: utf16), let to = range.upperBound.samePosition(in: utf16) else {
       return NSMakeRange(0, 0)
     }
@@ -21,7 +21,7 @@ extension String {
   }
   
   /// nsrange 转 range
-  public func range(from nsRange: NSRange) -> Range<String.Index>? {
+  func range(from nsRange: NSRange) -> Range<String.Index>? {
     guard
       let from16 = utf16.index(utf16.startIndex, offsetBy: nsRange.location, limitedBy: utf16.endIndex),
       let to16 = utf16.index(from16, offsetBy: nsRange.length, limitedBy: utf16.endIndex),
@@ -35,7 +35,7 @@ extension String {
   
   /// jsonString转dictionary
   /// - Parameter jsonString: jsonString
-  public func covertToDict() -> Dictionary<String, Any> {
+  func convertToDict() -> Dictionary<String, Any> {
     guard let data = self.data(using: .utf8) else {
       return [:]
     }
