@@ -39,18 +39,24 @@ public typealias HYPlacemarkResult = ((_ placemarks: [CLPlacemark], _ error: Err
     manager.stopUpdatingLocation()
     
     // location 回调
-    self.locRes?(locations, nil)
+    DispatchQueue.main.async {
+      self.locRes?(locations, nil)
+    }
     
     // placemark 回调
     if self.placeRes == nil { return }
     
     guard let loc = locations.first else {
-      self.placeRes?([], CLError(.locationUnknown))
+      DispatchQueue.main.async {
+        self.placeRes?([], CLError(.locationUnknown))
+      }
       return
     }
     
     CLGeocoder().reverseGeocodeLocation(loc) {[weak self] (placemarks, error) in
-      self?.placeRes?(placemarks ?? [], error)
+      DispatchQueue.main.async {
+        self?.placeRes?(placemarks ?? [], error)
+      }
     }
   }
   
@@ -58,8 +64,10 @@ public typealias HYPlacemarkResult = ((_ placemarks: [CLPlacemark], _ error: Err
   public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     manager.stopUpdatingLocation()
     
-    self.locRes?([], error)
-    self.placeRes?([], error)
+    DispatchQueue.main.async {
+      self.locRes?([], error)
+      self.placeRes?([], error)
+    }
   }
   
   /// 授权失败
