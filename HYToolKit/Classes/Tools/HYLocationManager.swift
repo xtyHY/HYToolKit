@@ -44,18 +44,15 @@ public typealias HYPlacemarkResult = ((_ placemarks: [CLPlacemark], _ error: Err
     }
     
     // placemark 回调
-    if self.placeRes == nil { return }
-    
-    guard let loc = locations.first else {
+    if let loc = locations.first {
+      CLGeocoder().reverseGeocodeLocation(loc) { [weak self] (placemarks, error) in
+        DispatchQueue.main.async {
+          self?.placeRes?(placemarks ?? [], error)
+        }
+      }
+    } else {
       DispatchQueue.main.async {
         self.placeRes?([], CLError(.locationUnknown))
-      }
-      return
-    }
-    
-    CLGeocoder().reverseGeocodeLocation(loc) {[weak self] (placemarks, error) in
-      DispatchQueue.main.async {
-        self?.placeRes?(placemarks ?? [], error)
       }
     }
   }
