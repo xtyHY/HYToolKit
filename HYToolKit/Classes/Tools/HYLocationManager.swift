@@ -80,14 +80,14 @@ public extension HYLocationManager {
   
   /// 启动定位，回调是CLLocation数组
   /// - Parameter location: 回调
-  func startLocate(location: @escaping HYLocationResult) {
-    self._start(location: location, placemark: nil)
+  func fetchLocation(_ callback: @escaping HYLocationResult) {
+    self._start(location: callback, placemark: nil)
   }
   
   /// 启动定位，回调是CLPlacemark数组
   /// - Parameter placemark: 回调
-  func startLocate(placemark: @escaping HYPlacemarkResult) {
-    self._start(location: nil, placemark: placemark)
+  func fetchPlacemark(_ callback: @escaping HYPlacemarkResult) {
+    self._start(location: nil, placemark: callback)
   }
   
   /// 查一下是不是没有定位权限
