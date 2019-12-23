@@ -103,10 +103,10 @@ public extension HYProgressHUD {
       self.hud.mode = .text
     case .completion:
       self.hud.mode = .customView
-      self.hud.customView = UIImageView(image: UIImage(named: "checkmark.png")?.withRenderingMode(.alwaysTemplate))
+      self.hud.customView = UIImageView(image: UIImage(named: "checkmark", in: Bundle(for: Self.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate))
     case .error:
       self.hud.mode = .customView
-      self.hud.customView = UIImageView(image: UIImage(named: "crossmark.png")?.withRenderingMode(.alwaysTemplate))
+      self.hud.customView = UIImageView(image: UIImage(named: "crossmark", in: Bundle(for: Self.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate))
     }
     
     if HYProgressHUD.lightAppearce {

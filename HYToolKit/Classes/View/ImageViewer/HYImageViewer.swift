@@ -39,7 +39,7 @@ public class HYImageViewer: UIView {
   
   private lazy var closeBtn: UIButton = {
     let btn = UIButton(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.size.height, width: 50, height: 50))
-    btn.setImage(UIImage(named: "image_close_icon"), for: .normal)
+    btn.setImage(UIImage(named: "image_close_icon", in: Bundle(for: Self.self), compatibleWith: nil), for: .normal)
     btn.addTarget(self, action: #selector(clickCloseBtn), for: .touchUpInside)
     return btn
   }()

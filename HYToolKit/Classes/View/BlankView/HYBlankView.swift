@@ -10,7 +10,7 @@ import UIKit
 
 public typealias HYBlankViewClickClosure = (() -> Void)
 
-public class HYBlankView: UIView {
+@objc open class HYBlankView: UIView {
   
   private lazy var contentView: UIView = {
     return UIView(frame: self.bounds)
@@ -43,7 +43,7 @@ public class HYBlankView: UIView {
   
   private var callback: HYBlankViewClickClosure?
   
-  public init(frame: CGRect, image: UIImage?, text: String, detail: String?, btnText: String?, callback: HYBlankViewClickClosure? = nil) {
+  @objc public init(frame: CGRect, image: UIImage?, text: String, detail: String?, btnText: String?, callback: HYBlankViewClickClosure? = nil) {
     super.init(frame: frame)
     
     self.callback = callback
@@ -67,7 +67,7 @@ public class HYBlankView: UIView {
     self.defaultDisplay()
   }
   
-  required init?(coder: NSCoder) {
+  required public init?(coder: NSCoder) {
     super.init(coder: coder)
   }
   
