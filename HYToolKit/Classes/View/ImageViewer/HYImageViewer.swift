@@ -303,7 +303,9 @@ fileprivate class HYImageViewerCell: UICollectionViewCell, UIScrollViewDelegate 
     
     var safeBottom: CGFloat = 0
     if #available(iOS 11.0, *) {
-      safeBottom = self.safeAreaInsets.bottom
+      if let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom {
+        safeBottom = bottom
+      }
     }
     self.markView.frame = CGRect(x: 0, y: self.bounds.height-height-20, width: self.bounds.width, height: height + 20 + safeBottom)
   }
