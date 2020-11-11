@@ -38,18 +38,23 @@ public class HYImageViewer: UIView {
   }()
   
   private lazy var closeBtn: UIButton = {
-    let btn = UIButton(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.size.height, width: 50, height: 50))
+    let btn = UIButton(frame: CGRect(x: 15, y: UIApplication.shared.statusBarFrame.size.height+15, width: 35, height: 35))
     btn.setImage(UIImage(named: "image_close_icon", in: Bundle(for: Self.self), compatibleWith: nil), for: .normal)
     btn.addTarget(self, action: #selector(clickCloseBtn), for: .touchUpInside)
+    btn.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+    btn.layer.cornerRadius = 17
     return btn
   }()
   
   private lazy var textLabel: UILabel = {
-    let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+    let label = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 35))
     label.textAlignment = .center
     label.font = UIFont.systemFont(ofSize: 14)
     label.textColor = .white
     label.center = CGPoint(x: self.bounds.size.width/2, y: self.closeBtn.center.y)
+    label.backgroundColor = UIColor.gray.withAlphaComponent(0.2);
+    label.layer.cornerRadius = 17
+    label.layer.masksToBounds = true
     return label
   }()
   
@@ -316,8 +321,12 @@ fileprivate class HYImageViewerCell: UICollectionViewCell, UIScrollViewDelegate 
       size.width.isNaN == false,
       size.height.isNaN == false {
       
-      self.imageView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height:  self.bounds.width * size.height / size.width)
-      self.imageView.center = CGPoint(x: self.bounds.width/2, y: self.bounds.height/2)
+      self.imageView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.width * size.height / size.width)
+      if (size.height < self.bounds.height) {
+        self.imageView.center = CGPoint(x: self.bounds.width/2, y: self.bounds.height/2)
+      } else {
+        self.scrollView.contentSize = CGSize(width: self.bounds.width, height: self.imageView.frame.height);
+      }
     }
   }
   
