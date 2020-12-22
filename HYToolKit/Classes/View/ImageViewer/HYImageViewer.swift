@@ -320,9 +320,10 @@ fileprivate class HYImageViewerCell: UICollectionViewCell, UIScrollViewDelegate 
     if let size = self.imageView.image?.size,
       size.width.isNaN == false,
       size.height.isNaN == false {
-      
+      // 默认是长图，从顶部开始显示
       self.imageView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.width * size.height / size.width)
-      if (size.height < self.bounds.height) {
+      if (self.imageView.height < self.bounds.height) {
+        // 不是长图，居中显示
         self.imageView.center = CGPoint(x: self.bounds.width/2, y: self.bounds.height/2)
       } else {
         self.scrollView.contentSize = CGSize(width: self.bounds.width, height: self.imageView.frame.height);
