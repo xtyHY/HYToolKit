@@ -110,12 +110,13 @@ public extension HYProgressHUD {
     }
     
     if HYProgressHUD.lightAppearce {
-      self.hud.bezelView.style = .blur
-      self.hud.bezelView.backgroundColor = .black(alpha: 0.1)
+      self.hud.bezelView.color = .black(alpha: 0.1)
+      self.hud.bezelView.blurEffectStyle = .light
       self.hud.contentColor = .black
       self.hud.customView?.tintColor = .black(alpha: 0.7)
     } else {
-      self.hud.bezelView.backgroundColor = .black(alpha: 0.8)
+      self.hud.bezelView.color = .black(alpha: 0.8)
+      self.hud.bezelView.blurEffectStyle = .dark
       self.hud.contentColor = .white
       self.hud.customView?.tintColor = .white
     }
